@@ -4,10 +4,15 @@ Mistral AI Bot
 A simple chatbot powered by Mistral AI
 """
 
+import os
 from mistralai import Mistral
 
-# Initialize the Mistral client with your API key
-API_KEY = "ICxl2qZTy6uSVi7N6zUyJldvkQDWpKKp"
+# Initialize the Mistral client with your API key from environment
+API_KEY = os.getenv("MISTRAL_API_KEY")
+if not API_KEY:
+    raise RuntimeError(
+        "MISTRAL_API_KEY environment variable not set. Set it before running the bot."
+    )
 client = Mistral(api_key=API_KEY)
 
 def chat_with_bot():
